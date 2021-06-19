@@ -34,4 +34,21 @@
        <span *ngIf="lastNameVar.hasError('required')">Please enter your last name.</span>
      </span>
   </div>
+  <div class="form-group"
+       [ngClass]="{ 'has-error': (emailVar.touched || emailVar.dirty) && emailVar.invalid }">
+    <input class="form-control"
+           id="emailId"
+           type="email"
+           placeholder="Email (required)"
+           required
+           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+"
+           [(ngModel)]="user.email"
+           name="email"
+           #emailVar="ngModel">
+     <span class="help-block"
+           *ngIf="(emailVar.touched || emailVar.dirty) && emailVar.errors">
+       <span *ngIf="emailVar.hasError('required')">Please enter your email address.</span>
+       <span *ngIf="emailVar.hasError('pattern')">Please enter a valid email address.</span>
+     </span>
+  </div>
 </form>
