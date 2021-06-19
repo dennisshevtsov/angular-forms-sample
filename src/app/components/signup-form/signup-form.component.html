@@ -51,4 +51,8 @@
        <span *ngIf="emailVar.hasError('pattern')">Please enter a valid email address.</span>
      </span>
   </div>
+  <input id="sendProductsId"
+         type="checkbox"
+         [(ngModel)]="user.sendProducts"
+         name="sendProducts">
 </form>
