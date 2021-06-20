@@ -55,4 +55,10 @@
          type="checkbox"
          [(ngModel)]="user.sendProducts"
          name="sendProducts">
+  <div *ngIf="user.sendProducts">
+    <div class="form-group">
+      <label class="col-md-2 control-label">Address Type</label>
+      
+    </div>
+  </div>
 </form>
