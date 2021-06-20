@@ -58,7 +58,21 @@
   <div *ngIf="user.sendProducts">
     <div class="form-group">
       <label class="col-md-2 control-label">Address Type</label>
-      
+      <input type="radio"
+             id="addressType1Id"
+             value="home"
+             [(ngModel)]="user.addressType"
+             name="addressType">Home
+      <input type="radio"
+             id="addressType2Id"
+             value="home"
+             [(ngModel)]="user.addressType"
+             name="addressType">Work
+      <input type="radio"
+             id="addressType3Id"
+             value="home"
+             [(ngModel)]="user.addressType"
+             name="addressType">Other
     </div>
   </div>
 </form>
