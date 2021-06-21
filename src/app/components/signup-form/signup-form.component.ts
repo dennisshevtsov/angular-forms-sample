@@ -11,8 +11,8 @@ import { UserModel, } from '../../models/user.model';
   ],
 })
 export class SignupFormComponent implements OnInit {
-  public contries = [ 'Ukraine', 'Armenia', 'Belarus',
-                      'Hungry', 'Kazakhstan', 'Poland', 'Russia', ];
+  public countries = [ 'Ukraine', 'Armenia', 'Belarus',
+                       'Hungry', 'Kazakhstan', 'Poland', 'Russia', ];
 
   public user = new UserModel();
 

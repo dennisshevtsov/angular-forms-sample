@@ -1,5 +1,5 @@
 <form class="form-horizontal"
-      #signupform="ngForm"
+      #signupForm="ngForm"
       (ngSubmit)="onSave(signupForm)">
   <div class="form-group"
        [ngClass]="{ 'has-error': (firstNameVar.touched || firstNameVar.dirty) && firstNameVar.invalid }">
@@ -81,6 +81,40 @@
         <option *ngFor="let country of countries"
                 [value]="country">{{country}}</option>
       </select>
+      <input type="text"
+             class="form-control"
+             id="cityId"
+             placeholder="City"
+             [(ngModel)]="user.city"
+             name="city">
+       <input type="number"
+              class="form-control"
+              id="zipId"
+              placeholder="Zip Code"
+              [(ngModel)]="user.zip"
+              name="zip">
+       <input type="text"
+              class="form-control"
+              id="street1Id"
+              placeholder="Street address"
+              [(ngModel)]="user.street1"
+              name="street1">
+       <input type="text"
+              class="form-control"
+              id="street2Id"
+              placeholder="Street address (second line)"
+              [(ngModel)]="user.street2"
+              name="street2">
     </div>
   </div>
+  <button class="btn btn-primary"
+          type="submit"
+          [disabled]="!signupForm.valid">
+     <span>Save</span>
+  </button>
 </form>
+
+<br>Dirty: {{signupForm.dirty}}
+<br>Touched: {{signupForm.touched}}
+<br>Valid: {{signupForm.valid}}
+<br>Value: {{signupForm.value | json}}

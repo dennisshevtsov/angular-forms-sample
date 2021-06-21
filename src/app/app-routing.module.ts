@@ -1,7 +1,19 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule, } from '@angular/core';
+import { RouterModule, Routes, } from '@angular/router';
 
-const routes: Routes = [];
+import { SignupFormComponent, } from './components';
+
+const routes: Routes = [
+  {
+    path: 'signup',
+    component: SignupFormComponent,
+  },
+  {
+    path: "",
+    pathMatch: "full",
+    redirectTo: "signup",
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
