@@ -51,10 +51,12 @@
        <span *ngIf="emailVar.hasError('pattern')">Please enter a valid email address.</span>
      </span>
   </div>
-  <input id="sendProductsId"
-         type="checkbox"
-         [(ngModel)]="user.sendProducts"
-         name="sendProducts">
+  <div class="form-check">
+    <input id="sendProductsId"
+       type="checkbox"
+       [(ngModel)]="user.sendProducts"
+       name="sendProducts"> Send Products
+  </div>
   <div *ngIf="user.sendProducts">
     <div class="form-group">
       <label class="col-md-2 control-label">Address Type</label>
