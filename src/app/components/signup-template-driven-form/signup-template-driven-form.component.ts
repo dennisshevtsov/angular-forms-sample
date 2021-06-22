@@ -4,13 +4,12 @@ import { NgForm, } from '@angular/forms';
 import { UserModel, } from '../../models/user.model';
 
 @Component({
-  selector: 'app-signup-form',
-  templateUrl: './signup-form.component.html',
+  templateUrl: './signup-template-driven-form.component.html',
   styleUrls: [
-    './signup-form.component.scss',
+    './signup-template-driven-form.component.scss',
   ],
 })
-export class SignupFormComponent implements OnInit {
+export class SignupTemplateDrivenFormComponent implements OnInit {
   public countries = [ 'Ukraine', 'Armenia', 'Belarus',
                        'Hungry', 'Kazakhstan', 'Poland', 'Russia', ];
 

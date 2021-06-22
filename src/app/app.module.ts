@@ -4,12 +4,14 @@ import { BrowserModule, } from '@angular/platform-browser';
 
 import { AppRoutingModule, } from './app-routing.module';
 import { AppComponent, } from './app.component';
-import { SignupFormComponent, } from './components';
+import { SignupTemplateDrivenFormComponent,
+         SignupReactiveFormComponent, } from './components';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupFormComponent,
+    SignupTemplateDrivenFormComponent,
+    SignupReactiveFormComponent,
   ],
   imports: [
     FormsModule,
