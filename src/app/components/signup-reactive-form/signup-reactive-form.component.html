@@ -4,3 +4,50 @@
   <option *ngFor="let country of countries"
           value="{{country}}">{{country}}</option>
 </select>
+
+<form class="form-horizontal"
+      (ngSubmit)="onSave()"
+      [formGroup]="userForm">
+  <button class="btn btn-primary"
+          type="submit"
+          [disabled]="!userForm.valid">
+    <span>Save</span>
+  </button>
+
+  <br>Dirty: {{userForm.dirty}}
+  <br>Touched: {{userForm.touched}}
+  <br>Valid: {{userForm.valid}}
+  <br>Value: {{userForm.value | json}}
+  <br>Form Status: {{userForm.status}}
+
+  <input class="form-control"
+         id="firstNameId"
+         type="text"
+         placeholder="First Name (required)"
+         required
+         minlength="3"
+         formControlName="firstName">
+
+  <input class="form-control"
+         id="lastNameId"
+         type="text"
+         placeholder="Last Name (required)"
+         required
+         maxlength="50"
+         formControlName="lastName">
+
+  <input class="form-control"
+         id="emailId"
+         type="text"
+         placeholder="Email (required)"
+         required
+         pattern="[a-z0-9._%+-]+@[a-z0-9.-]+"
+         formControlName="email">
+
+  <label>
+    <input id="sendProductsId"
+           type="checkbox"
+           formControlName="sendProducts">
+    Send me your products
+  </label>
+</form>
