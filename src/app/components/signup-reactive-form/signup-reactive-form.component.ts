@@ -18,18 +18,24 @@ export class SignupReactiveFormComponent implements OnInit {
     this.initializeForm();
   }
 
-  public initializeForm(): void {
+  public onSave(): void {
+    console.log(this.userForm);
+    console.log(`Saved: ${JSON.stringify(this.userForm.value)}`);
+    console.log(`Saved: ${JSON.stringify(this.userForm.getRawValue())}`);
+  }
+
+  public hasError(controlName: string): boolean {
+    const control = this.userForm.get(controlName);
+
+    return control != null && (control.touched || control.dirty) && !control.valid;
+  }
+
+  private initializeForm(): void {
     this.userForm = new FormGroup({
       firstName: new FormControl(),
       lastName: new FormControl(),
       email: new FormControl(),
       sendProducts: new FormControl(true),
     });
-  }
-
-  public onSave(): void {
-    console.log(this.userForm);
-    console.log(`Saved: ${JSON.stringify(this.userForm.value)}`);
-    console.log(`Saved: ${JSON.stringify(this.userForm.getRawValue())}`);
   }
 }
