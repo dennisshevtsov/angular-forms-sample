@@ -24,10 +24,16 @@ export class SignupReactiveFormComponent implements OnInit {
     console.log(`Saved: ${JSON.stringify(this.userForm.getRawValue())}`);
   }
 
-  public hasError(controlName: string): boolean {
+  public isValid(controlName: string): boolean {
     const control = this.userForm.get(controlName);
 
-    return control != null && (control.touched || control.dirty) && !control.valid;
+    return control == null || !(control.touched || control.dirty) || control.valid;
+  }
+
+  public hasErrors(controlName: string): boolean {
+    const control = this.userForm.get(controlName);
+
+    return control != null && (control.touched || control.dirty) && control.errors != null;
   }
 
   private initializeForm(): void {
