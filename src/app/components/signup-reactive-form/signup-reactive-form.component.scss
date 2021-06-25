@@ -1,9 +1,5 @@
-input {
-  .ng-valid {
-    .ng-touched {
-      background: lightgreen;
-    }
-  }
+input.ng-valid.ng-touched {
+  background: lightgreen;
 }
 
 .has-error {
