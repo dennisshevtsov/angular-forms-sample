@@ -36,6 +36,12 @@ export class SignupReactiveFormComponent implements OnInit {
     return control != null && (control.touched || control.dirty) && control.errors != null;
   }
 
+  public hasError(controlName: string, errorCode: string): boolean {
+    const control = this.userForm.get(controlName);
+
+    return control != null && control.hasError(errorCode);
+  }
+
   private initializeForm(): void {
     this.userForm = new FormGroup({
       firstName: new FormControl(),
