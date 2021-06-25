@@ -1,0 +1,17 @@
+input {
+  .ng-valid {
+    .ng-touched {
+      background: lightgreen;
+    }
+  }
+}
+
+.has-error {
+  input {
+    border-color: #ff0000;
+  }
+
+  span {
+    color: #ff0000;
+  }
+}
