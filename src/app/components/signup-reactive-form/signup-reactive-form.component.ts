@@ -11,11 +11,18 @@ export class SignupReactiveFormComponent implements OnInit {
   public countries = [
     'Armenia', 'Belarus', 'Hungry', 'Kazakhstan',
     'Poland', 'Russia', 'Ukraine', ];
-  public user = new UserModel();
+  public user = new UserModel(
+    'Ivan',
+    'Ivanov',
+    'ivanivanov@test.test',
+    false
+  );
   public userForm: FormGroup;
 
   public ngOnInit(): void {
     this.initializeForm();
+    this.setFormsValues();
+    // this.patchFormValues();
   }
 
   public onSave(): void {
@@ -48,6 +55,22 @@ export class SignupReactiveFormComponent implements OnInit {
       lastName: new FormControl(),
       email: new FormControl(),
       sendProducts: new FormControl(true),
+    });
+  }
+
+  private setFormsValues(): void {
+    this.userForm.setValue({
+      firstName: this.user.firstName,
+      lastName: this.user.lastName,
+      email: this.user.email,
+      sendProducts: this.user.sendProducts,
+    });
+  }
+
+  private patchFormValues(): void {
+    this.userForm.patchValue({
+      firstName: this.user.firstName,
+      lastName: this.user.lastName,
     });
   }
 }
