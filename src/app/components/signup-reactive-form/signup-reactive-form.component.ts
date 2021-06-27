@@ -1,5 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
-import { FormBuilder, FormGroup, } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 
 import { UserModel, } from '../../models/user.model';
 
@@ -53,12 +53,31 @@ export class SignupReactiveFormComponent implements OnInit {
 
   private buildForm() {
     this.userForm = this.formBuilder.group({
-      firtName: '',
-      lastName: {
-        value: 'Ivanov',
-        disabled: true,
-      },
-      email: [''],
+      firtName: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+        ],
+      ],
+      lastName: [
+        {
+          value: 'Ivanov',
+          disabled: true,
+        },
+        [
+          Validators.required,
+          Validators.maxLength(50),
+        ]
+      ],
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'),
+          Validators.email,
+        ]
+      ],
       sendProducts: true,
     });
   }

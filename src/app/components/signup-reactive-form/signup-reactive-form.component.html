@@ -27,8 +27,6 @@
            id="firstNameId"
            type="text"
            placeholder="First Name (required)"
-           required
-           minlength="3"
            formControlName="firstName">
     <span class="help-block"
           *ngIf="hasErrors('firstName')">
@@ -43,8 +41,6 @@
            id="lastNameId"
            type="text"
            placeholder="Last Name (required)"
-           required
-           maxlength="50"
            formControlName="lastName">
     <span class="help-block"
           *ngIf="hasErrors('lastName')">
@@ -58,8 +54,6 @@
            id="emailId"
            type="text"
            placeholder="Email (required)"
-           required
-           pattern="[a-z0-9._%+-]+@[a-z0-9.-]+"
            formControlName="email">
     <span class="help-block"
           *ngIf="hasErrors('email')">
