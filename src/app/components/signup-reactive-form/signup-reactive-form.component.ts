@@ -11,12 +11,11 @@ export class SignupReactiveFormComponent implements OnInit {
   public countries = [
     'Armenia', 'Belarus', 'Hungry', 'Kazakhstan',
     'Poland', 'Russia', 'Ukraine', ];
-  public user = new UserModel(
-    'Ivan',
-    'Ivanov',
-    'ivanivanov@test.test',
-    false
-  );
+  public user = new UserModel();
+  public placeholder = {
+    email: 'Email (required)',
+    phone: 'Phone',
+  };
   public userForm: FormGroup;
 
   public constructor(
@@ -78,6 +77,8 @@ export class SignupReactiveFormComponent implements OnInit {
           Validators.email,
         ]
       ],
+      phone: '',
+      notification: 'email',
       sendProducts: true,
     });
   }
