@@ -1,11 +1,11 @@
 import { Component, OnInit, } from '@angular/core';
-import { FormControl, FormGroup, } from '@angular/forms';
+import { FormBuilder, FormGroup, } from '@angular/forms';
 
 import { UserModel, } from '../../models/user.model';
 
 @Component({
   templateUrl: './signup-reactive-form.component.html',
-  styleUrls: ['./signup-reactive-form.component.scss']
+  styleUrls: ['./signup-reactive-form.component.scss'],
 })
 export class SignupReactiveFormComponent implements OnInit {
   public countries = [
@@ -19,10 +19,12 @@ export class SignupReactiveFormComponent implements OnInit {
   );
   public userForm: FormGroup;
 
+  public constructor(
+    private formBuilder: FormBuilder,
+  ) {}
+
   public ngOnInit(): void {
-    this.initializeForm();
-    this.setFormsValues();
-    // this.patchFormValues();
+    this.buildForm();
   }
 
   public onSave(): void {
@@ -49,28 +51,15 @@ export class SignupReactiveFormComponent implements OnInit {
     return control != null && control.hasError(errorCode);
   }
 
-  private initializeForm(): void {
-    this.userForm = new FormGroup({
-      firstName: new FormControl(),
-      lastName: new FormControl(),
-      email: new FormControl(),
-      sendProducts: new FormControl(true),
-    });
-  }
-
-  private setFormsValues(): void {
-    this.userForm.setValue({
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
-      email: this.user.email,
-      sendProducts: this.user.sendProducts,
-    });
-  }
-
-  private patchFormValues(): void {
-    this.userForm.patchValue({
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
+  private buildForm() {
+    this.userForm = this.formBuilder.group({
+      firtName: '',
+      lastName: {
+        value: 'Ivanov',
+        disabled: true,
+      },
+      email: [''],
+      sendProducts: true,
     });
   }
 }
