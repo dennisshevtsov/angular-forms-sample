@@ -50,6 +50,28 @@ export class SignupReactiveFormComponent implements OnInit {
     return control != null && control.hasError(errorCode);
   }
 
+  public onSetNotification(notifyVia: string): void {
+    const phoneControl = this.userForm.get("phone");
+    const emailControl = this.userForm.get("email");
+
+    if (notifyVia === "text") {
+      phoneControl?.setValidators(Validators.required);
+      emailControl?.clearValidators();
+
+      this.placeholder.phone = 'Phone (required)';
+      this.placeholder.email = 'Email';
+    }
+    else {
+      emailControl?.clearValidators();
+
+      this.placeholder.phone = 'Phone';
+      this.placeholder.email = 'Email (required)';
+    }
+
+    phoneControl?.updateValueAndValidity();
+    emailControl?.updateValueAndValidity();
+  }
+
   private buildForm() {
     this.userForm = this.formBuilder.group({
       firtName: [
