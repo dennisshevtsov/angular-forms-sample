@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: "",
     pathMatch: "full",
-    redirectTo: "template-driven",
+    redirectTo: "reactive",
   }
 ];
 
