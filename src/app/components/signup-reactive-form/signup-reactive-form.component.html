@@ -59,7 +59,7 @@
     <input class="form-control"
            id="emailId"
            type="text"
-           placeholder="{placeholder.email}"
+           placeholder="{{placeholder.email}}"
            formControlName="email">
     <span class="help-block"
           *ngIf="hasErrors('email')">
@@ -93,13 +93,13 @@
         <input type="radio"
                value="email"
                formControlName="notification"
-               (click)="onSetNotification('email')">
+               (click)="onSetNotification('email')">Email
       </label>
       <label class="radio-inline">
         <input type="radio"
                value="text"
                formControlName="notification"
-               (click)="onSetNotification('text')">
+               (click)="onSetNotification('text')">Phone
       </label>
     </div>
   </div>

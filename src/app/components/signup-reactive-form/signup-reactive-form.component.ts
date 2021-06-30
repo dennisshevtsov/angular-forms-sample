@@ -74,7 +74,7 @@ export class SignupReactiveFormComponent implements OnInit {
 
   private buildForm() {
     this.userForm = this.formBuilder.group({
-      firtName: [
+      firstName: [
         '',
         [
           Validators.required,
@@ -84,7 +84,7 @@ export class SignupReactiveFormComponent implements OnInit {
       lastName: [
         {
           value: 'Ivanov',
-          disabled: true,
+          disabled: false,
         },
         [
           Validators.required,
@@ -101,6 +101,7 @@ export class SignupReactiveFormComponent implements OnInit {
       ],
       phone: '',
       notification: 'email',
+      serviceLevel: '',
       sendProducts: true,
     });
   }
