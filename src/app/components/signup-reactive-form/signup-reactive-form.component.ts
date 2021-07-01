@@ -24,8 +24,8 @@ export class SignupReactiveFormComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    // this.buildForm();
-    this.createForm();
+    this.buildForm();
+    //this.createForm();
   }
 
   public onSave(): void {
@@ -100,13 +100,25 @@ export class SignupReactiveFormComponent implements OnInit {
 
   private buildForm(): void {
     this.userForm = this.formBuilder.group({
-      firstName: [
+      //firstName: [
+      //  '',
+      //  [
+      //    Validators.required,
+      //    Validators.minLength(3),
+      //  ],
+      //],
+      // firstName: new FormControl(
+      //   '',
+      //   {
+      //     validators: [ Validators.required, Validators.minLength(3), ],
+      //     updateOn: 'blur',
+      //   }),
+      firstName: this.formBuilder.control(
         '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-        ],
-      ],
+        {
+          validators: [ Validators.required, Validators.minLength(3), ],
+          updateOn: 'blur',
+        }),
       lastName: [
         {
           value: 'Ivanov',
