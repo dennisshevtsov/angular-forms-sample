@@ -1,5 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
 
 import { CustomValidators, } from '../../validators';
 import { UserModel, } from '../../models/user.model';
@@ -24,7 +24,8 @@ export class SignupReactiveFormComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.buildForm();
+    // this.buildForm();
+    this.createForm();
   }
 
   public onSave(): void {
@@ -73,7 +74,31 @@ export class SignupReactiveFormComponent implements OnInit {
     emailControl?.updateValueAndValidity();
   }
 
-  private buildForm() {
+  private createForm(): void {
+    this.userForm = new FormGroup({
+      firstName: new FormControl(
+        '',
+        {
+          validators: [ Validators.required, Validators.minLength(3), ],
+          updateOn: 'blur',
+        },
+      ),
+      lastName: new FormControl(),
+      email: new FormControl(),
+      phone: new FormControl(),
+      notification: new FormControl('email'),
+      serviceLevel: new FormControl(
+        '',
+        {
+          validators: [ CustomValidators.serviceLevel, ],
+          updateOn: 'blur',
+        },
+      ),
+      sendProducts: new FormControl(true),
+    });
+  }
+
+  private buildForm(): void {
     this.userForm = this.formBuilder.group({
       firstName: [
         '',
