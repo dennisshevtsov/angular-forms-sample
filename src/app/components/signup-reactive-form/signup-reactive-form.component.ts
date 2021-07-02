@@ -18,6 +18,8 @@ export class SignupReactiveFormComponent implements OnInit {
     phone: 'Phone',
   };
   public userForm: FormGroup;
+  public rMin = 1;
+  public rMax = 3;
 
   public constructor(
     private formBuilder: FormBuilder,
@@ -90,7 +92,7 @@ export class SignupReactiveFormComponent implements OnInit {
       serviceLevel: new FormControl(
         '',
         {
-          validators: [ CustomValidators.serviceLevel, ],
+          validators: [ CustomValidators.serviceLevelRange(this.rMax, this.rMax), ],
           updateOn: 'blur',
         },
       ),
