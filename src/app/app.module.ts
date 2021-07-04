@@ -6,6 +6,7 @@ import { AppRoutingModule, } from './app-routing.module';
 import { AppComponent, } from './app.component';
 import { SignupTemplateDrivenFormComponent,
          SignupReactiveFormComponent, } from './components';
+import { ValidatorsModule } from './validators/validators.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SignupTemplateDrivenFormComponent,
     FormsModule,
     BrowserModule,
     AppRoutingModule,
+    ValidatorsModule,
   ],
   providers: [],
   bootstrap: [
