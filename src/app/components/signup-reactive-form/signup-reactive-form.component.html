@@ -113,7 +113,9 @@
              id="serviceLevelId"
              type="number"
              formControlName="serviceLevel"
-             appServiceLevelValidator >
+             appServiceLevelValidator
+             rMin="{{rMin}}"
+             rMax="{{rMax}}" >
       <span class="help-block"
             *ngIf="hasErrors('serviceLevel')">
         <span *ngIf="hasError('serviceLevel', 'serviceLevel')">Please enter correct number from {{rMin}} to {{rMax}}.</span>
