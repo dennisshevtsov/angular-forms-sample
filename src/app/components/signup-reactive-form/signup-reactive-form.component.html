@@ -66,6 +66,7 @@
       <span *ngIf="hasError('email', 'required')">Please enter your email address.</span>
       <span *ngIf="hasError('email', 'pattern')">Please enter a valid email address.</span>
       <span *ngIf="hasError('email', 'email')">Please enter a valid email address.</span>
+      <span *ngIf="hasError('email', 'asyncEmailInvalid')">Please enter another email address.</span>
     </span>
   </div>
 
