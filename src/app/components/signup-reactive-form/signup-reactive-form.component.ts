@@ -61,12 +61,20 @@ export class SignupReactiveFormComponent implements OnInit {
     if (notifyVia === "text") {
       phoneControl?.setValidators(Validators.required);
       emailControl?.clearValidators();
+      emailControl?.clearAsyncValidators();
 
       this.placeholder.phone = 'Phone (required)';
       this.placeholder.email = 'Email';
     }
     else {
+      emailControl?.setValidators([
+        Validators.required,
+        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'),
+        Validators.email,
+      ]);
+      emailControl?.setAsyncValidators(CustomValidators.asyncEmailPromiseValidator);
       emailControl?.clearValidators();
+      emailControl?.clearAsyncValidators();
 
       this.placeholder.phone = 'Phone';
       this.placeholder.email = 'Email (required)';
@@ -137,7 +145,10 @@ export class SignupReactiveFormComponent implements OnInit {
           Validators.required,
           Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'),
           Validators.email,
-        ]
+        ],
+        [
+          CustomValidators.asyncEmailPromiseValidator,
+        ],
       ],
       phone: '',
       notification: 'email',
