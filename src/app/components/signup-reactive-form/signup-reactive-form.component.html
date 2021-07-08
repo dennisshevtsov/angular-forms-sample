@@ -60,7 +60,8 @@
            id="emailId"
            type="text"
            placeholder="{{placeholder.email}}"
-           formControlName="email">
+           formControlName="email"
+           appAsyncEmailValidator>
     <span class="help-block"
           *ngIf="hasErrors('email')">
       <span *ngIf="hasError('email', 'required')">Please enter your email address.</span>

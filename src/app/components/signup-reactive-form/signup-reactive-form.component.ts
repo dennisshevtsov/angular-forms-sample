@@ -146,9 +146,9 @@ export class SignupReactiveFormComponent implements OnInit {
           Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'),
           Validators.email,
         ],
-        [
-          CustomValidators.asyncEmailPromiseValidator,
-        ],
+        //[
+        //  CustomValidators.asyncEmailPromiseValidator,
+        //],
       ],
       phone: '',
       notification: 'email',
