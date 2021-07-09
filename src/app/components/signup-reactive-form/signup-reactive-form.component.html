@@ -52,42 +52,45 @@
     </span>
   </div>
 
-  <div class="form-group"
-       [ngClass]="{ 'has-error': !isValid('email') }">
-    <label class="control-label"
-           for="emailId">Email</label>
-    <input class="form-control"
-           id="emailId"
-           type="text"
-           placeholder="{{placeholder.email}}"
-           formControlName="email"
-           appAsyncEmailValidator>
-    <span class="help-block"
-          *ngIf="hasErrors('email')">
-      <span *ngIf="hasError('email', 'required')">Please enter your email address.</span>
-      <span *ngIf="hasError('email', 'pattern')">Please enter a valid email address.</span>
-      <span *ngIf="hasError('email', 'email')">Please enter a valid email address.</span>
-      <span *ngIf="hasError('email', 'asyncEmailInvalid')">Please enter another email address.</span>
-    </span>
-  </div>
-
-  <div class="form-group"
-       [ngClass]="{ 'has-error': !isValid('confirmEmail') }">
-    <label class="col-md-2 control-label"
-           for="confirmEmailId">Confirm Email</label>
-
-    <div class="col-md-8">
+  <div formGroupName="emailGroup">
+    <div class="form-group"
+        [ngClass]="{ 'has-error': !isValid('email') }">
+      <label class="control-label"
+            for="emailId">Email</label>
       <input class="form-control"
-             id="confirmEmailId"
-             type="email"
-             placeholder="{{placeholder.confirmEmail}}"
-             formControlName="confirmEmail">
+            id="emailId"
+            type="text"
+            placeholder="{{placeholder.email}}"
+            formControlName="email"
+            appAsyncEmailValidator>
       <span class="help-block"
-            *ngIf="hassErrors('confirmEmail')">
-        <span *ngIf="hassError('confirmEmail', 'required')">Please confirm your email address.</span>
+            *ngIf="hasErrors('email')">
+        <span *ngIf="hasError('email', 'required')">Please enter your email address.</span>
+        <span *ngIf="hasError('email', 'pattern')">Please enter a valid email address.</span>
+        <span *ngIf="hasError('email', 'email')">Please enter a valid email address.</span>
+        <span *ngIf="hasError('email', 'asyncEmailInvalid')">Please enter another email address.</span>
       </span>
     </div>
+
+    <div class="form-group"
+        [ngClass]="{ 'has-error': !isValid('confirmEmail') }">
+      <label class="col-md-2 control-label"
+            for="confirmEmailId">Confirm Email</label>
+
+      <div class="col-md-8">
+        <input class="form-control"
+              id="confirmEmailId"
+              type="email"
+              placeholder="{{placeholder.confirmEmail}}"
+              formControlName="confirmEmail">
+        <span class="help-block"
+              *ngIf="hassErrors('confirmEmail')">
+          <span *ngIf="hassError('confirmEmail', 'required')">Please confirm your email address.</span>
+        </span>
+      </div>
+    </div>
   </div>
+
 
   <div class="form-group"
        [ngClass]="{ 'has-error': !isValid('phone') }">
