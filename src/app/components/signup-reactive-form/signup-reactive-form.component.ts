@@ -151,6 +151,10 @@ export class SignupReactiveFormComponent implements OnInit {
         //  CustomValidators.asyncEmailPromiseValidator,
         //],
       ],
+      confirmEmail: [
+        '',
+        Validators.required,
+      ],
       phone: '',
       notification: 'email',
       serviceLevel: [''],
