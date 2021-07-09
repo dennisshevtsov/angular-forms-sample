@@ -15,6 +15,7 @@ export class SignupReactiveFormComponent implements OnInit {
   public user = new UserModel();
   public placeholder = {
     email: 'Email (required)',
+    confirmEmail: 'Confirm Email (required)',
     phone: 'Phone',
   };
   public userForm: FormGroup;
