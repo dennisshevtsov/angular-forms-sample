@@ -85,8 +85,12 @@ export class SignupReactiveFormComponent implements OnInit {
     emailControl?.updateValueAndValidity();
   }
 
+  public get email(): AbstractControl | null {
+    return this.userForm.get('emailGroup.email');
+  }
+
   public get confirmEmail(): AbstractControl | null {
-    return this.userForm.get('confirmEmail');
+    return this.userForm.get('emailGroup.confirmEmail');
   }
 
   private createForm(): void {
@@ -144,21 +148,31 @@ export class SignupReactiveFormComponent implements OnInit {
           Validators.maxLength(50),
         ]
       ],
-      email: [
-        '',
-        [
-          Validators.required,
-          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'),
-          Validators.email,
-        ],
+      //email: [
+      //  '',
+      //  [
+      //    Validators.required,
+      //    Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'),
+      //    Validators.email,
+      //  ],
         //[
         //  CustomValidators.asyncEmailPromiseValidator,
         //],
-      ],
-      confirmEmail: [
-        '',
-        Validators.required,
-      ],
+      //],
+      emailGroup: this.formBuilder.group({
+        email: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'),
+            Validators.email,
+          ],
+        ],
+        confirmEmail: [
+          '',
+          Validators.required,
+        ],
+      }),
       phone: '',
       notification: 'email',
       serviceLevel: [''],
