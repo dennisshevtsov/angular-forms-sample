@@ -1,5 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
 
 import { CustomValidators, } from '../../validators';
 import { UserModel, } from '../../models/user.model';
@@ -83,6 +83,10 @@ export class SignupReactiveFormComponent implements OnInit {
 
     phoneControl?.updateValueAndValidity();
     emailControl?.updateValueAndValidity();
+  }
+
+  public get confirmEmail(): AbstractControl | null {
+    return this.userForm.get('confirmEmail');
   }
 
   private createForm(): void {
