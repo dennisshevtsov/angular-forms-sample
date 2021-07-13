@@ -53,7 +53,7 @@
   </div>
 
   <div formGroupName="emailGroup"
-       [ngClass]="{ 'has-error': emailGroup.hasErrors}">
+       [ngClass]="{ 'has-error': emailGroup?.errors}">
     <div class="form-group"
         [ngClass]="{ 'has-error': !isValid('email') }">
       <label class="control-label"
