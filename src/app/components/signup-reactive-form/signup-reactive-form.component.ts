@@ -56,33 +56,55 @@ export class SignupReactiveFormComponent implements OnInit {
   }
 
   public onSetNotification(notifyVia: string): void {
-    const phoneControl = this.userForm.get("phone");
-    const emailControl = this.userForm.get("email");
+    const controls = new Map();
+
+    controls.set('phoneControl', this.phone);
+    controls.set('emailGroup', this.emailGroup);
+    controls.set('emailControl', this.email);
+    controls.set('confirmEmailControl', this.confirmEmail);
 
     if (notifyVia === "text") {
-      phoneControl?.setValidators(Validators.required);
-      emailControl?.clearValidators();
-      emailControl?.clearAsyncValidators();
+      controls.get('phoneControl').setValidators(Validators.required);
+      controls.forEach(
+        (control, index) => {
+          if (index !== 'phoneControl') {
+            control.clearValidators();
+            control.clearAsyncValidators();
+          }
+        });
 
-      this.placeholder.phone = 'Phone (required)';
-      this.placeholder.email = 'Email';
+      this.placeholder = {
+        phone: 'Phone (required)',
+        email: 'Email',
+        confirmEmail: 'Confirm Email',
+      };
     }
     else {
+      const emailControl = controls.get('emailControl');
+
       emailControl?.setValidators([
         Validators.required,
         Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'),
         Validators.email,
       ]);
       emailControl?.setAsyncValidators(CustomValidators.asyncEmailPromiseValidator);
-      emailControl?.clearValidators();
-      emailControl?.clearAsyncValidators();
+      
+      controls.get('confirmEmailControl').setValidators(Validators.required);
+      controls.get('emailControl').setValidators([CustomValidators.emailMatcher]);
+      controls.get('phoneControl').clearValidators();
 
-      this.placeholder.phone = 'Phone';
-      this.placeholder.email = 'Email (required)';
+      this.placeholder = {
+        phone: 'Phone',
+        email: 'Email (required)',
+        confirmEmail: 'Confirm Email (required)',
+      };
     }
 
-    phoneControl?.updateValueAndValidity();
-    emailControl?.updateValueAndValidity();
+    controls.forEach(control => control.updateValueAndValidity());
+  }
+
+  public get phone(): AbstractControl | null {
+    return this.userForm.get('phone');
   }
 
   public get email(): AbstractControl | null {
