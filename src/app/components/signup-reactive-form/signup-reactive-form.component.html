@@ -52,7 +52,8 @@
     </span>
   </div>
 
-  <div formGroupName="emailGroup">
+  <div formGroupName="emailGroup"
+       [ngClass]="{ 'has-error': emailGroup.hasErrors}">
     <div class="form-group"
         [ngClass]="{ 'has-error': !isValid('email') }">
       <label class="control-label"
@@ -84,8 +85,9 @@
               placeholder="{{placeholder.confirmEmail}}"
               formControlName="confirmEmail">
         <span class="help-block"
-              *ngIf="hassErrors('confirmEmail')">
-          <span *ngIf="hassError('confirmEmail', 'required')">Please confirm your email address.</span>
+              *ngIf="hasErrors('confirmEmail') || emailGroup?.errors">
+          <span *ngIf="hasError('confirmEmail', 'required')">Please confirm your email address.</span>
+          <span *ngIf="hasError('emailGroup', 'emailMatch')">The confirmation does not match the email address.</span>
         </span>
       </div>
     </div>
