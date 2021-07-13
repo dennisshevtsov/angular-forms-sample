@@ -1,5 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
+import { AbstractControl, AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
 
 import { CustomValidators, } from '../../validators';
 import { UserModel, } from '../../models/user.model';
@@ -93,6 +93,10 @@ export class SignupReactiveFormComponent implements OnInit {
     return this.userForm.get('emailGroup.confirmEmail');
   }
 
+  public get emailGroup(): AbstractControl | null {
+    return this.userForm.get('emailGroup');
+  }
+
   private createForm(): void {
     this.userForm = new FormGroup({
       firstName: new FormControl(
@@ -172,7 +176,9 @@ export class SignupReactiveFormComponent implements OnInit {
           '',
           Validators.required,
         ],
-      }),
+      }, {
+        validator: CustomValidators.emailMatcher
+      } as AbstractControlOptions),
       phone: '',
       notification: 'email',
       serviceLevel: [''],
