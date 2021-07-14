@@ -67,7 +67,7 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
     return control != null && control.hasError(errorCode);
   }
 
-  public onSetNotification(notifyVia: string): void {
+  public setNotification(notifyVia: string): void {
     const controls = new Map();
 
     controls.set('phoneControl', this.phone);
@@ -200,7 +200,7 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
     const notification: AbstractControl | null = this.userForm.get('notification');
 
     if (notification != null) {
-      this.sub = notification.valueChanges.subscribe(value => console.log(value));
+      this.sub = notification.valueChanges.subscribe(value => this.setNotification(value));
     }
   }
 }
