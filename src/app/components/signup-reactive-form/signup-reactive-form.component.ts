@@ -1,14 +1,20 @@
-import { Component, OnInit, } from '@angular/core';
-import { AbstractControl, AbstractControlOptions, FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
+import { Component, OnDestroy, OnInit, } from '@angular/core';
+import { AbstractControl,
+         AbstractControlOptions,
+         FormBuilder,
+         FormControl,
+         FormGroup,
+         Validators,                   } from '@angular/forms';
 
 import { CustomValidators, } from '../../validators';
-import { UserModel, } from '../../models/user.model';
+import { UserModel,        } from '../../models/user.model';
+import { Subscription,     } from 'rxjs';
 
 @Component({
   templateUrl: './signup-reactive-form.component.html',
   styleUrls: ['./signup-reactive-form.component.scss'],
 })
-export class SignupReactiveFormComponent implements OnInit {
+export class SignupReactiveFormComponent implements OnInit, OnDestroy {
   public countries = [
     'Armenia', 'Belarus', 'Hungry', 'Kazakhstan',
     'Poland', 'Russia', 'Ukraine', ];
@@ -22,13 +28,19 @@ export class SignupReactiveFormComponent implements OnInit {
   public rMin = 1;
   public rMax = 3;
 
+  public sub: Subscription;
+
   public constructor(
     private formBuilder: FormBuilder,
   ) {}
 
   public ngOnInit(): void {
     this.buildForm();
-    //this.createForm();
+    this.watchValueChanges();
+  }
+
+  public ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
   public onSave(): void {
@@ -119,30 +131,6 @@ export class SignupReactiveFormComponent implements OnInit {
     return this.userForm.get('emailGroup');
   }
 
-  private createForm(): void {
-    this.userForm = new FormGroup({
-      firstName: new FormControl(
-        '',
-        {
-          validators: [ Validators.required, Validators.minLength(3), ],
-          updateOn: 'blur',
-        },
-      ),
-      lastName: new FormControl(),
-      email: new FormControl(),
-      phone: new FormControl(),
-      notification: new FormControl('email'),
-      serviceLevel: new FormControl(
-        '',
-        {
-          validators: [ CustomValidators.serviceLevelRange(this.rMax, this.rMax), ],
-          updateOn: 'blur',
-        },
-      ),
-      sendProducts: new FormControl(true),
-    });
-  }
-
   private buildForm(): void {
     this.userForm = this.formBuilder.group({
       //firstName: [
@@ -206,5 +194,13 @@ export class SignupReactiveFormComponent implements OnInit {
       serviceLevel: [''],
       sendProducts: true,
     });
+  }
+
+  private watchValueChanges(): void {
+    const notification: AbstractControl | null = this.userForm.get('notification');
+
+    if (notification != null) {
+      this.sub = notification.valueChanges.subscribe(value => console.log(value));
+    }
   }
 }
