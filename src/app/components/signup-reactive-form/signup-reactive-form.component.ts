@@ -24,11 +24,23 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
     confirmEmail: 'Confirm Email (required)',
     phone: 'Phone',
   };
+
   public userForm: FormGroup;
+
   public rMin = 1;
   public rMax = 3;
 
-  public sub: Subscription;
+  public validationMessage: string;
+
+  private sub: Subscription;
+  private validationMessageMap = {
+    email: {
+      required: 'Please enter your email address.',
+      pattern: 'Please enter a valid email address.',
+      email: 'Please enter a valid email address',
+      asyncEmailInvalid: 'This email already exists. Please enter other email address.',
+    },
+  };
 
   public constructor(
     private formBuilder: FormBuilder,
