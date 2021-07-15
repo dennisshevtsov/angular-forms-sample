@@ -227,12 +227,19 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
     if (notification != null) {
       this.sub = notification.valueChanges.subscribe(value => this.setNotification(value));
     }
+
+    const emailControl: AbstractControl | null = this.userForm.get('emailGroup.email');
+    
+    if (emailControl) {
+      const sub: Subscription = emailControl?.valueChanges.subscribe(value => this.setValidationMessage(emailControl, 'email'));
+      this.sub.add(sub);
+    }
   }
 
   private setValidationMessage(
     c: AbstractControl,
     controlName: keyof IValidationMessageMap): void {
-    this.validationMessage = '',
+    this.validationMessage = '';
 
     if ((c.touched || c.dirty) && c.errors) {
       this.validationMessage = Object.keys(c.errors)
