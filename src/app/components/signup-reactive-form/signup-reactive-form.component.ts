@@ -10,6 +10,19 @@ import { CustomValidators, } from '../../validators';
 import { UserModel,        } from '../../models/user.model';
 import { Subscription,     } from 'rxjs';
 
+interface IEmailValidationMessageMap
+{
+  required?: string,
+  pattern?: string,
+  email?: string,
+  asyncEmailInvalid?: string,
+}
+
+interface IValidationMessageMap
+{
+  email?: IEmailValidationMessageMap,
+}
+
 @Component({
   templateUrl: './signup-reactive-form.component.html',
   styleUrls: ['./signup-reactive-form.component.scss'],
@@ -33,7 +46,7 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
   public validationMessage: string;
 
   private sub: Subscription;
-  private validationMessageMap = {
+  private validationMessageMap: IValidationMessageMap = {
     email: {
       required: 'Please enter your email address.',
       pattern: 'Please enter a valid email address.',
@@ -213,6 +226,18 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
 
     if (notification != null) {
       this.sub = notification.valueChanges.subscribe(value => this.setNotification(value));
+    }
+  }
+
+  private setValidationMessage(
+    c: AbstractControl,
+    controlName: keyof IValidationMessageMap): void {
+    this.validationMessage = '',
+
+    if ((c.touched || c.dirty) && c.errors) {
+      this.validationMessage = Object.keys(c.errors)
+                                     .map(key => this.validationMessageMap[controlName]![key as keyof IEmailValidationMessageMap])
+                                     .join(' ');
     }
   }
 }
