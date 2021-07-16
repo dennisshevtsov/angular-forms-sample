@@ -168,19 +168,6 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
 
   private buildForm(): void {
     this.userForm = this.formBuilder.group({
-      //firstName: [
-      //  '',
-      //  [
-      //    Validators.required,
-      //    Validators.minLength(3),
-      //  ],
-      //],
-      // firstName: new FormControl(
-      //   '',
-      //   {
-      //     validators: [ Validators.required, Validators.minLength(3), ],
-      //     updateOn: 'blur',
-      //   }),
       firstName: this.formBuilder.control(
         '',
         {
@@ -197,17 +184,6 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
           Validators.maxLength(50),
         ]
       ],
-      //email: [
-      //  '',
-      //  [
-      //    Validators.required,
-      //    Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'),
-      //    Validators.email,
-      //  ],
-        //[
-        //  CustomValidators.asyncEmailPromiseValidator,
-        //],
-      //],
       emailGroup: this.formBuilder.group({
         email: [
           '',
