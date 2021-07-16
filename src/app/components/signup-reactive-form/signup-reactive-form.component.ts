@@ -74,6 +74,14 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
     console.log(`Saved: ${JSON.stringify(this.userForm.getRawValue())}`);
   }
 
+  public onBlur(): void {
+    const emailControl = this.userForm.get('emailGroup.email');
+
+    if (emailControl != null) {
+      this.setValidationMessage(emailControl, 'email');
+    }
+  }
+
   public isValid(controlName: string): boolean {
     const control = this.userForm.get(controlName);
 
