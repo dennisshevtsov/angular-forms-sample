@@ -204,6 +204,12 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
       notification: 'email',
       serviceLevel: [''],
       sendProducts: true,
+      addressType: 'home',
+      country: '',
+      city: '',
+      zip: '',
+      street1: '',
+      street2: '',
     });
   }
 
