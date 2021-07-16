@@ -8,7 +8,9 @@ import { AbstractControl,
 
 import { CustomValidators, } from '../../validators';
 import { UserModel,        } from '../../models/user.model';
+
 import { Subscription,     } from 'rxjs';
+import { debounceTime,     } from 'rxjs/operators';
 
 interface IEmailValidationMessageMap
 {
@@ -237,9 +239,10 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
     }
 
     const emailControl: AbstractControl | null = this.userForm.get('emailGroup.email');
-    
+
     if (emailControl) {
-      const sub: Subscription = emailControl?.valueChanges.subscribe(value => this.setValidationMessage(emailControl, 'email'));
+      const sub: Subscription = emailControl.valueChanges.pipe(debounceTime(1000))
+                                                         .subscribe(value => this.setValidationMessage(emailControl, 'email'));
       this.sub.add(sub);
     }
   }
