@@ -1,9 +1,9 @@
-<select class="form-control"
+<!-- <select class="form-control"
         id="countryId">
   <option value="">Select a Country...</option>
   <option *ngFor="let country of countries"
           value="{{country}}">{{country}}</option>
-</select>
+</select> -->
 
 <form class="form-horizontal"
       (ngSubmit)="onSave()"
@@ -148,7 +148,7 @@
     Send me your products
   </label>
 
-  <div>
+  <div *ngIf="userForm.get('sendProducts')?.value">
     <div class="form-group">
       <label class="col-md-2 control-label">Address Type</label>
     </div>
