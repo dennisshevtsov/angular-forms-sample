@@ -168,44 +168,55 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
 
   private buildForm(): void {
     this.userForm = this.formBuilder.group({
-      firstName: this.formBuilder.control(
-        '',
-        {
-          validators: [ Validators.required, Validators.minLength(3), ],
-          updateOn: 'blur',
-        }),
-      lastName: [
-        {
-          value: 'Ivanov',
-          disabled: false,
-        },
-        [
-          Validators.required,
-          Validators.maxLength(50),
-        ]
-      ],
-      emailGroup: this.formBuilder.group({
-        email: [
-          '',
-          [
-            Validators.required,
-            Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'),
-            Validators.email,
-          ],
-        ],
-        confirmEmail: [
-          '',
-          Validators.required,
-        ],
-      }, {
-        validator: CustomValidators.emailMatcher
-      } as AbstractControlOptions),
+      firstName: this.buildFirstName(),
+      lastName: this.buildLastName(),
+      emailGroup: this.buildEmail(),
       phone: '',
       notification: 'email',
-      serviceLevel: [''],
+      serviceLevel: '',
       sendProducts: true,
       addresses: this.buildAddress(),
     });
+  }
+
+  private buildFirstName(): FormControl {
+    const options: AbstractControlOptions = {
+      validators: [ Validators.required, Validators.minLength(3), ],
+      updateOn: 'blur',
+    };
+
+    return this.formBuilder.control('', options);
+  }
+
+  private buildLastName(): FormControl {
+    const state: any = {
+      value: 'Ivanov',
+      disabled: false,
+    };
+    const options: AbstractControlOptions = {
+      validators: [ Validators.required, Validators.maxLength(50), ],
+    };
+
+    return this.formBuilder.control(state, options);
+  }
+
+  private buildEmail(): FormGroup {
+    const config = {
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+'),
+          Validators.email,
+        ],
+      ],
+      confirmEmail: [ '', Validators.required, ],
+    };
+    const options: AbstractControlOptions = {
+      validators: CustomValidators.emailMatcher,
+    };
+
+    return this.formBuilder.group(config, options);
   }
 
   private buildAddress(): FormGroup {
