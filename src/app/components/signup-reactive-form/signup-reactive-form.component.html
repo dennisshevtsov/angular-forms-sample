@@ -136,27 +136,29 @@
   </label>
 
   <div *ngIf="userForm.get('sendProducts')?.value">
-    <div class="form-group">
-      <label class="col-md-2 control-label">Address Type</label>
-      <div class="col-md-8">
-        <label class="radio-inline">
-          <input type="radio"
-                 id="addressTypeId1"
-                 value="home"
-                 formControlName="addressType"> Home
-        </label>
-        <label class="radio-inline">
-          <input type="radio"
-                 id="addressTypeId2"
-                 value="work"
-                 formControlName="addressType"> Work
-        </label>
-        <label class="radio-inline">
-          <input type="radio"
-                 id="addressTypeId3"
-                 value="other"
-                 formControlName="addressType"> Other
-        </label>
+    <div formGroupName="addresses">
+      <div class="form-group">
+        <label class="col-md-2 control-label">Address Type</label>
+        <div class="col-md-8">
+          <label class="radio-inline">
+            <input type="radio"
+                   id="addressTypeId1"
+                   value="home"
+                   formControlName="addressType"> Home
+          </label>
+          <label class="radio-inline">
+            <input type="radio"
+                   id="addressTypeId2"
+                   value="work"
+                   formControlName="addressType"> Work
+          </label>
+          <label class="radio-inline">
+            <input type="radio"
+                   id="addressTypeId3"
+                   value="other"
+                   formControlName="addressType"> Other
+          </label>
+        </div>
       </div>
 
       <div class="form-group">
@@ -209,15 +211,15 @@
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="form-group">
-      <div class="col-md-4 col-md-offset-2">
-        <button class="btn btn-primary"
-                type="submit"
-                [disabled]="!userForm.valid">
-          <span>Save</span>
-        </button>
-      </div>
+  <div class="form-group">
+    <div class="col-md-4 col-md-offset-2">
+      <button class="btn btn-primary"
+              type="submit"
+              [disabled]="!userForm.valid">
+        <span>Save</span>
+      </button>
     </div>
   </div>
 </form>
