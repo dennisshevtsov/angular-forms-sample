@@ -27,7 +27,7 @@
   <div class="form-group"
        [ngClass]="{ 'has-error': !isValid('lastName') }">
     <label class="control-label"
-       for="lastNameId">Last Name</label>
+           for="lastNameId">Last Name</label>
     <input class="form-control"
            id="lastNameId"
            type="text"
@@ -42,31 +42,31 @@
   <div formGroupName="emailGroup"
        [ngClass]="{ 'has-error': validationMessage}">
     <div class="form-group"
-        [ngClass]="{ 'has-error': !isValid('email') }">
+         [ngClass]="{ 'has-error': !isValid('email') }">
       <label class="control-label"
-            for="emailId">Email</label>
+             for="emailId">Email</label>
       <input class="form-control"
-            id="emailId"
-            type="text"
-            placeholder="{{placeholder.email}}"
-            formControlName="email"
-            appAsyncEmailValidator
-            (blur)="onBlur()">
+             id="emailId"
+             type="text"
+             placeholder="{{placeholder.email}}"
+             formControlName="email"
+             appAsyncEmailValidator
+             (blur)="onBlur()">
       <span class="help-block"
             *ngIf="validationMessage">{{validationMessage}}</span>
     </div>
 
     <div class="form-group"
-        [ngClass]="{ 'has-error': !isValid('confirmEmail') }">
+         [ngClass]="{ 'has-error': !isValid('confirmEmail') }">
       <label class="col-md-2 control-label"
-            for="confirmEmailId">Confirm Email</label>
+             for="confirmEmailId">Confirm Email</label>
 
       <div class="col-md-8">
         <input class="form-control"
-              id="confirmEmailId"
-              type="email"
-              placeholder="{{placeholder.confirmEmail}}"
-              formControlName="confirmEmail">
+               id="confirmEmailId"
+               type="email"
+               placeholder="{{placeholder.confirmEmail}}"
+               formControlName="confirmEmail">
         <span class="help-block"
               *ngIf="hasErrors('confirmEmail') || emailGroup?.errors">
           <span *ngIf="hasError('confirmEmail', 'required')">Please confirm your email address.</span>
@@ -136,80 +136,82 @@
   </label>
 
   <div *ngIf="userForm.get('sendProducts')?.value">
-    <div formGroupName="addresses">
-      <div class="form-group">
-        <label class="col-md-2 control-label">Address Type</label>
-        <div class="col-md-8">
-          <label class="radio-inline">
-            <input type="radio"
-                   id="addressTypeId1"
-                   value="home"
-                   formControlName="addressType"> Home
-          </label>
-          <label class="radio-inline">
-            <input type="radio"
-                   id="addressTypeId2"
-                   value="work"
-                   formControlName="addressType"> Work
-          </label>
-          <label class="radio-inline">
-            <input type="radio"
-                   id="addressTypeId3"
-                   value="other"
-                   formControlName="addressType"> Other
-          </label>
+    <div formArrayName="addresses">
+      <div formGroupName="0">
+        <div class="form-group">
+          <label class="col-md-2 control-label">Address Type</label>
+          <div class="col-md-8">
+            <label class="radio-inline">
+              <input type="radio"
+                     id="addressTypeId1"
+                     value="home"
+                     formControlName="addressType"> Home
+            </label>
+            <label class="radio-inline">
+              <input type="radio"
+                     id="addressTypeId2"
+                     value="work"
+                     formControlName="addressType"> Work
+            </label>
+            <label class="radio-inline">
+              <input type="radio"
+                     id="addressTypeId3"
+                     value="other"
+                     formControlName="addressType"> Other
+            </label>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label class="col-md-2 control-label"
-               for="city1">Country, City, Zip Code</label>
-        <div class="col-md-3">
-          <select class="form-control"
-                  id="countryId"
-                  formControlName="country">
-            <option value="">Select Country...</option>
-            <option *ngFor="let country of countries"
-                    value="{{country}}">{{country}}</option>
-          </select>
+        <div class="form-group">
+          <label class="col-md-2 control-label"
+                 for="city1">Country, City, Zip Code</label>
+          <div class="col-md-3">
+            <select class="form-control"
+                    id="countryId"
+                    formControlName="country">
+              <option value="">Select Country...</option>
+              <option *ngFor="let country of countries"
+                      value="{{country}}">{{country}}</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <input type="text"
+                   class="form-control"
+                   id="cityId"
+                   placeholder="City"
+                   formControlName="city">
+          </div>
+          <div class="col-md-3">
+            <input type="text"
+                   class="form-control"
+                   id="zipId"
+                   placeholder="Zip Code"
+                   formControlName="zip">
+          </div>
         </div>
-        <div class="col-md-3">
-          <input type="text"
-                 class="form-control"
-                 id="cityId"
-                 placeholder="City"
-                 formControlName="city">
-        </div>
-        <div class="col-md-3">
-          <input type="text"
-                 class="form-control"
-                 id="zipId"
-                 placeholder="Zip Code"
-                 formControlName="zip">
-        </div>
-      </div>
 
-      <div class="form-group">
-        <label class="col-md-2 control-label"
-               for="street1Id">Street Address 1</label>
-        <div class="col-md-8">
-          <input type="text"
-                 class="form-control"
-                 id="street1Id"
-                 placeholder="Street Address"
-                 formControlName="street1">
+        <div class="form-group">
+          <label class="col-md-2 control-label"
+                 for="street1Id">Street Address 1</label>
+          <div class="col-md-8">
+            <input type="text"
+                   class="form-control"
+                   id="street1Id"
+                   placeholder="Street Address"
+                   formControlName="street1">
+          </div>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label class="col-md-2 control-label"
-               for="street2Id">Street Address 2</label>
-        <div class="col-md-8">
-          <input type="text"
-                 class="form-control"
-                 id="street2Id"
-                 placeholder="Street Address (second line)"
-                 formControlName="street2">
+        <div class="form-group">
+          <label class="col-md-2 control-label"
+                 for="street2Id">Street Address 2</label>
+          <div class="col-md-8">
+            <input type="text"
+                   class="form-control"
+                   id="street2Id"
+                   placeholder="Street Address (second line)"
+                   formControlName="street2">
+          </div>
         </div>
       </div>
     </div>
