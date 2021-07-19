@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit, } from '@angular/core';
 import { AbstractControl,
          AbstractControlOptions,
+         FormArray,
          FormBuilder,
          FormControl,
          FormGroup,
@@ -164,6 +165,10 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
 
   public get emailGroup(): AbstractControl | null {
     return this.userForm.get('emailGroup');
+  }
+
+  public get addresses(): FormArray | null {
+    return this.userForm.get('addresses') as FormArray;
   }
 
   private buildForm(): void {
