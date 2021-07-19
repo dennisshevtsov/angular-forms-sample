@@ -180,7 +180,7 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
       notification: 'email',
       serviceLevel: '',
       sendProducts: true,
-      addresses: this.buildAddress(),
+      addresses: this.formBuilder.array([this.buildAddress()]),
     });
   }
 
