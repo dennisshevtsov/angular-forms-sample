@@ -137,25 +137,26 @@
 
   <div *ngIf="userForm.get('sendProducts')?.value">
     <div formArrayName="addresses">
-      <div formGroupName="0">
+      <div *ngFor="let address of addresses.controls; let i = index"
+           [formGroupName]="i">
         <div class="form-group">
           <label class="col-md-2 control-label">Address Type</label>
           <div class="col-md-8">
             <label class="radio-inline">
               <input type="radio"
-                     id="addressTypeId1"
+                     id="{{'addressType1Id' + i}}"
                      value="home"
                      formControlName="addressType"> Home
             </label>
             <label class="radio-inline">
               <input type="radio"
-                     id="addressTypeId2"
+                     id="{{'addressType2Id' + i}}"
                      value="work"
                      formControlName="addressType"> Work
             </label>
             <label class="radio-inline">
               <input type="radio"
-                     id="addressTypeId3"
+                     id="{{'addressType3Id' + i}}"
                      value="other"
                      formControlName="addressType"> Other
             </label>
@@ -164,10 +165,10 @@
 
         <div class="form-group">
           <label class="col-md-2 control-label"
-                 for="city1">Country, City, Zip Code</label>
+                 attr.for="{{'countryId' + i}}">Country, City, Zip Code</label>
           <div class="col-md-3">
             <select class="form-control"
-                    id="countryId"
+                    id="{{'countryId' + i}}"
                     formControlName="country">
               <option value="">Select Country...</option>
               <option *ngFor="let country of countries"
@@ -177,14 +178,14 @@
           <div class="col-md-3">
             <input type="text"
                    class="form-control"
-                   id="cityId"
+                   id="{{'cityId' + i}}"
                    placeholder="City"
                    formControlName="city">
           </div>
           <div class="col-md-3">
             <input type="text"
                    class="form-control"
-                   id="zipId"
+                   id="{{'zipId' + i}}"
                    placeholder="Zip Code"
                    formControlName="zip">
           </div>
@@ -192,11 +193,11 @@
 
         <div class="form-group">
           <label class="col-md-2 control-label"
-                 for="street1Id">Street Address 1</label>
+                 attr.for="{{'street1Id' + i}}">Street Address 1</label>
           <div class="col-md-8">
             <input type="text"
                    class="form-control"
-                   id="street1Id"
+                   
                    placeholder="Street Address"
                    formControlName="street1">
           </div>
@@ -204,11 +205,11 @@
 
         <div class="form-group">
           <label class="col-md-2 control-label"
-                 for="street2Id">Street Address 2</label>
+                 attr.for="{{'street2Id' + i}}">Street Address 2</label>
           <div class="col-md-8">
             <input type="text"
                    class="form-control"
-                   id="street2Id"
+                   id="{{'street2Id' + i}}"
                    placeholder="Street Address (second line)"
                    formControlName="street2">
           </div>
