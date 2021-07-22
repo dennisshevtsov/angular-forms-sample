@@ -7,7 +7,7 @@
   <br>Valid: {{userForm.valid}}
   <br>Value: {{userForm.value | json}}
   <br>Form Status: {{userForm.status}}
-  <br>Street: {{addresses.get('0.street1')?.value}}
+  <br>Street: {{addresses?.get('0.street1')?.value}}
 
   <div class="form-group"
        [ngClass]="{ 'has-error': !isValid('firstName') }">
@@ -138,7 +138,7 @@
 
   <div *ngIf="userForm.get('sendProducts')?.value">
     <div formArrayName="addresses">
-      <div *ngFor="let address of addresses.controls; let i = index"
+      <div *ngFor="let address of addresses?.controls; let i = index"
            [formGroupName]="i">
         <div class="form-group">
           <label class="col-md-2 control-label">Address Type</label>

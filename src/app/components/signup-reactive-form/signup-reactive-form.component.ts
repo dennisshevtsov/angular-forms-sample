@@ -89,6 +89,10 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
     this.addresses?.push(this.buildAddress());
   }
 
+  public onRemoveAddress(index: number): void {
+    this.addresses?.removeAt(index);
+  }
+
   public isValid(controlName: string): boolean {
     const control = this.userForm.get(controlName);
 
