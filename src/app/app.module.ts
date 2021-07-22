@@ -7,12 +7,14 @@ import { AppComponent, } from './app.component';
 import { SignupTemplateDrivenFormComponent,
          SignupReactiveFormComponent, } from './components';
 import { ValidatorsModule } from './validators/validators.module';
+import { AddressInfoComponent } from './components/address-info/address-info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupTemplateDrivenFormComponent,
     SignupReactiveFormComponent,
+    AddressInfoComponent,
   ],
   imports: [
     ReactiveFormsModule,
