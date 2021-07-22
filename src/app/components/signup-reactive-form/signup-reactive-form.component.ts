@@ -85,6 +85,10 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  public onAddAddress(): void {
+    this.addresses?.push(this.buildAddress());
+  }
+
   public isValid(controlName: string): boolean {
     const control = this.userForm.get(controlName);
 
