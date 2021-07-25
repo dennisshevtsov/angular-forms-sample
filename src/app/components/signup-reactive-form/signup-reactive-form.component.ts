@@ -31,9 +31,6 @@ interface IValidationMessageMap
   styleUrls: ['./signup-reactive-form.component.scss'],
 })
 export class SignupReactiveFormComponent implements OnInit, OnDestroy {
-  public countries = [
-    'Armenia', 'Belarus', 'Hungry', 'Kazakhstan',
-    'Poland', 'Russia', 'Ukraine', ];
   public user = new UserModel();
   public placeholder = {
     email: 'Email (required)',
@@ -232,15 +229,8 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
     return this.formBuilder.group(config, options);
   }
 
-  private buildAddress(): FormGroup {
-    return this.formBuilder.group({
-      addressType: 'home',
-      country: '',
-      city: '',
-      zip: '',
-      street1: '',
-      street2: '',
-    });
+  private buildAddress(): FormControl {
+    return this.formBuilder.control('');
   }
 
   private watchValueChanges(): void {
