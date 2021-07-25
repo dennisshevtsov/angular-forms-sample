@@ -252,6 +252,7 @@ export class SignupReactiveFormComponent implements OnInit, OnDestroy {
   private setValidationMessage(
     c: AbstractControl,
     controlName: keyof IValidationMessageMap): void {
+
     this.validationMessage = '';
 
     if ((c.touched || c.dirty) && c.errors) {

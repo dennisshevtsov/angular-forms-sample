@@ -44,7 +44,7 @@ export class AddressInfoComponent implements OnInit, ControlValueAccessor, Valid
   @Output()
   public removeAddress: EventEmitter<number> = new EventEmitter<number>();
 
-  public addreInfoFrom: FormGroup;
+  public addressInfoForm: FormGroup;
   public validationMessage: string;
   public countries: string[] = [
     'Armenia',
@@ -68,7 +68,7 @@ export class AddressInfoComponent implements OnInit, ControlValueAccessor, Valid
   ) { }
 
   public ngOnInit(): void {
-    this.addreInfoFrom = this.buildAddress();
+    this.addressInfoForm = this.buildAddress();
     this.watchValueChanges();
   }
 
@@ -80,14 +80,14 @@ export class AddressInfoComponent implements OnInit, ControlValueAccessor, Valid
 
   public writeValue(val: any): void {
     if (val) {
-      this.addreInfoFrom.setValue(val, { emitEvent: false });
+      this.addressInfoForm.setValue(val, { emitEvent: false });
     }
   }
 
   public registerOnChange(fn: any): void {
     console.log('on change');
 
-    this.addreInfoFrom.valueChanges.subscribe(fn);
+    this.addressInfoForm.valueChanges.subscribe(fn);
   }
 
   public registerOnTouched(fn: any): void {
@@ -97,13 +97,13 @@ export class AddressInfoComponent implements OnInit, ControlValueAccessor, Valid
   }
 
   public setDisabledState?(isDisabled: boolean): void {
-    isDisabled ? this.addreInfoFrom.disable() : this.addreInfoFrom.enable();
+    isDisabled ? this.addressInfoForm.disable() : this.addressInfoForm.enable();
   }
 
   public validate(c: AbstractControl): ValidationErrors | null {
     console.log('Address Info validation', c);
 
-    return this.addreInfoFrom.valid ? null : {
+    return this.addressInfoForm.valid ? null : {
       invalidForm: {
         valid: false,
         message: 'addressInfoForm fields are invalid'
@@ -126,7 +126,7 @@ export class AddressInfoComponent implements OnInit, ControlValueAccessor, Valid
   }
 
   private watchValueChanges(): void {
-    const cityControl : AbstractControl | null = this.addreInfoFrom.get('city');
+    const cityControl : AbstractControl | null = this.addressInfoForm.get('city');
 
     if (cityControl) {
       cityControl.valueChanges.pipe(debounceTime(1000))
