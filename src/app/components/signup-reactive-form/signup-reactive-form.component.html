@@ -138,7 +138,11 @@
 
   <div *ngIf="userForm.get('sendProducts')?.value">
     <div formArrayName="addresses">
-      
+      <app-address-info *ngFor="let address of addresses.controls; let i = index"
+                        [formControlName]="i"
+                        [index]="i"
+                        (removeAddress)="onRemoveAddress($event)">
+      </app-address-info>
     </div>
     <div class="form-group">
       <div class="col-md-4 col-md-offset-2">
